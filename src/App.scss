@@ -1,0 +1,62 @@
+$bgColor: rgba(139, 139, 247, 0.726);
+$fontUrl: "./fonts/neucha-v12-cyrillic-regular.";
+
+@mixin wrap (){
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin container (){
+  width: 95%;
+  max-width: 540px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* neucha-regular - cyrillic */
+@font-face {
+  font-family: 'Neucha';
+  font-style: normal;
+  font-weight: 400;
+  src: url($fontUrl + 'eot'); /* IE9 Compat Modes */
+  src: local('Neucha'),
+       url($fontUrl + 'eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url($fontUrl + 'woff2') format('woff2'), /* Super Modern Browsers */
+       url($fontUrl + 'woff') format('woff'), /* Modern Browsers */
+       url($fontUrl + 'ttf') format('truetype'), /* Safari, Android, iOS */
+       url($fontUrl + 'svg#Neucha') format('svg'); /* Legacy iOS */
+}
+*{
+  margin: 0;
+  padding: 0;
+}
+a{
+  text-decoration: none;
+  font-size: 18px;
+}
+ul, ol{
+  list-style: none;
+}
+
+
+.App{
+  @include wrap();
+  min-height: 100vh;
+  font-family: "Neucha";
+  background: $bgColor;
+}
+
+.menu{
+  @include container();
+  justify-content: center;
+  grid-gap: 50px;
+}
+.menu{
+  a{
+    color: #000000;
+  }
+}
+
