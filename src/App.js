@@ -1,14 +1,13 @@
-import logo from './logo.svg';
 import './App.scss';
 import { Route } from 'react-router';
 import { Menu } from './Menu';
-import { Easy } from './Easy';
+import EasyContainer from './EasyContainer';
 
 function App() {
   return (
     <div className="App">
       <Route render={() => <Menu />} exact path={["/", "/menu"]} />
-      <Route render={() => <Easy />} path="/easy" />
+      <Route render={() => <EasyContainer />} path="/easy" />
     </div>
   );
 }
