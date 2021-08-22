@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
-import { Easy } from "./Easy";
-import { setValue } from "./Redux/easyReducer"
+import Easy from "./Easy";
+import { setValue } from "./Redux/easyReducer";
+import { startGame } from "./Redux/easyReducer";
 
 const mapStateToProps = state => {
     return {
@@ -9,4 +10,4 @@ const mapStateToProps = state => {
         errors: state.easy.errors,
     };
 };
-export default connect(mapStateToProps, {setValue})(Easy);
+export default connect(mapStateToProps, {setValue, startGame})(Easy);

@@ -1,21 +1,35 @@
+import { useEffect } from "react";
 import { useState } from "react";
+import { withRouter } from "react-router-dom";
 
-export const Easy = (props) => {
+const Easy = (props) => {
     const isWin = () => {
-        for(let arr of props.matrix){
-        
+        for (let arr of props.matrix) {
+            if (arr.some(i => i === 0)) return;
+        };
+        props.startGame();
+        props.history.push("/win");
+    };
+    const isOver = () => {
+        if (props.errors === 3) {
+            props.startGame();
+            props.history.push("/gameOver");
         };
     };
+    useEffect(() => {
+        isWin();
+        isOver();
+        window.onpopstate = props.startGame;
+    }, [props.matrix, props.errors]);
     const setValue = e => props.setValue(e.target.dataset.value, indexArr);
-    const [indexArr, newIndexArr] = useState([0,0]);
-    const setActiveInput = (a, b) => newIndexArr([a,b])
+    const [indexArr, newIndexArr] = useState([0, 0]);
+    const setActiveInput = (a, b) => newIndexArr([a, b])
     const tbody = props.matrix.map((tr, trIndex) => {
         return (
             <tr key={`_${trIndex}`}>{tr.map((td, index) => {
                 return (
-                    <td onClick={() => setActiveInput(trIndex, index)} key={`_${trIndex}_${index}`}>
-                        <input id={`_${trIndex}_${index}`} type="radio" name="easyMatrix" className="check" value={td} />
-                        <label className="cell" htmlFor={`_${trIndex}_${index}`}>{td || ""}</label>
+                    <td className={(trIndex === indexArr[0] && index === indexArr[1]) ? "td activeCeil" : "td"} onClick={() => setActiveInput(trIndex, index)} key={`_${trIndex}_${index}`}>
+                        {td || ""}
                     </td>
                 );
             })}</tr>
@@ -36,3 +50,4 @@ export const Easy = (props) => {
         </div>
     );
 };
+export default withRouter(Easy);

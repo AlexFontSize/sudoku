@@ -1,7 +1,8 @@
 const SET_VALUE = "Set value";
+const START_GAME = "Start game";
 const dataOptions = {
-    choiseOptions(){
-        return Math.floor(Math.random()*this.options.length);
+    choiseOptions() {
+        return Math.floor(Math.random() * this.options.length);
     },
     options: [
         [
@@ -91,25 +92,28 @@ const randomOrtionsChoise = (state, data) => {
     end = JSON.parse(end);
     return {
         ...state,
-        matrix: {...state.matrix, start, end},
+        matrix: { ...state.matrix, start, end },
         errors: 0
     };
 };
 const easyReducer = (state = initialState, action) => {
-    switch(action.type){
+    switch (action.type) {
         case SET_VALUE:
-        let newState = {
-            ...state,
-            matrix: {...state.matrix, start: [...state.matrix.start]}
-        };
-        if(state.matrix.end[action.indexArr[0]][action.indexArr[1]] === +action.value){
-            newState.matrix.start[action.indexArr[0]][action.indexArr[1]] = +action.value;
-        }else{
-            newState.errors++;
-        };
-        return newState;
+            let newState = {
+                ...state,
+                matrix: { ...state.matrix, start: [...state.matrix.start] }
+            };
+            if (state.matrix.end[action.indexArr[0]][action.indexArr[1]] === +action.value) {
+                newState.matrix.start[action.indexArr[0]][action.indexArr[1]] = +action.value;
+            } else {
+                newState.errors++;
+            };
+            return newState;
+        case START_GAME:
+            return randomOrtionsChoise(state, dataOptions);
     };
     return randomOrtionsChoise(state, dataOptions);
 };
-export const setValue = (value, indexArr) => ({type: SET_VALUE, value, indexArr});
+export const setValue = (value, indexArr) => ({ type: SET_VALUE, value, indexArr });
+export const startGame = () => ({ type: START_GAME });
 export default easyReducer;
