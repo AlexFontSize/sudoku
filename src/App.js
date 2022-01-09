@@ -1,5 +1,5 @@
 import './App.scss';
-import { Route } from 'react-router';
+import { Route, Routes } from 'react-router-dom';
 import { Menu } from './Menu';
 import EasyContainer from './EasyContainer';
 import NormalContainer from './NormalContainer';
@@ -10,12 +10,15 @@ import GameOver from './GameOver';
 function App() {
   return (
     <div className="App">
-      <Route render={() => <Menu />} exact path={["/", "/menu"]} />
-      <Route render={() => <EasyContainer />} path="/easy" />
-      <Route render={() => <NormalContainer />} path="/normal" />
-      <Route render={() => <HardContainer />} path="/hard" />
-      <Route render={() => <Win />} path="/win" />
-      <Route render={() => <GameOver />} path="/gameOver" />
+      <Routes>
+        <Route element={<Menu />} exact path="/" />
+        <Route element={<Menu />} exact path="/menu" />
+        <Route element={<EasyContainer />} path="/easy" />
+        <Route element={<NormalContainer />} path="/normal" />
+        <Route element={<HardContainer />} path="/hard" />
+        <Route element={<Win />} path="/win" />
+        <Route element={<GameOver />} path="/gameOver" />
+      </Routes>
     </div>
   );
 }

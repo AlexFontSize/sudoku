@@ -1,19 +1,20 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { withRouter } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Easy = (props) => {
+    const navigate = useNavigate();
     const isWin = () => {
         for (let arr of props.matrix) {
             if (arr.some(i => i === 0)) return;
         };
         props.startGame();
-        props.history.push("/win");
+        navigate("/win");
     };
     const isOver = () => {
         if (props.errors === 3) {
             props.startGame();
-            props.history.push("/gameOver");
+            navigate("/gameOver");
         };
     };
     useEffect(() => {
@@ -50,4 +51,4 @@ const Easy = (props) => {
         </div>
     );
 };
-export default withRouter(Easy);
+export default Easy;

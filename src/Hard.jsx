@@ -1,19 +1,20 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { withRouter } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Hard = (props) => {
+    const navigate = useNavigate();
     const isWin = () => {
         for (let arr of props.matrix) {
             if (arr.some(i => i === 0)) return;
         };
         props.startGame();
-        props.history.push("/win");
+        navigate("/win");
     };
     const isOver = () => {
         if (props.errors === 1) {
             props.startGame();
-            props.history.push("/gameOver");
+            navigate("/gameOver");
         };
     };
     useEffect(() => {
@@ -50,4 +51,4 @@ const Hard = (props) => {
         </div>
     );
 };
-export default withRouter(Hard);
+export default Hard;
