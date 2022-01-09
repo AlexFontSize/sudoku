@@ -78,7 +78,7 @@ const randomOrtionsChoise = (state, data) => {
         errors: 0
     };
 };
-const easyReducer = (state = initialState, action) => {
+const hardReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_VALUE:
             let newState = {
@@ -98,4 +98,4 @@ const easyReducer = (state = initialState, action) => {
 };
 export const setValue = (value, indexArr) => ({ type: SET_VALUE, value, indexArr });
 export const startGame = () => ({ type: START_GAME });
-export default easyReducer;
+export default hardReducer;
